@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:coinquilini/components/button.dart';
 import 'package:coinquilini/components/text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -15,6 +16,44 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
+
+  void signUp() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation(Colors.white),
+        ),
+      ),
+    );
+
+    if (passwordTextController.text != confirmPasswordTextController.text) {
+      Navigator.pop(context);
+
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                icon: const Icon(Icons.error),
+                iconColor: Colors.grey[500],
+                title: const Text('Email non valida'),
+                titleTextStyle: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 18,
+                ),
+              ));
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 20),
 
                 Mybutton(
-                  onTap: widget.onTap,
+                  onTap: signUp,
                   text: "Registrati",
                 ),
 

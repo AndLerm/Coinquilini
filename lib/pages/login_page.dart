@@ -18,8 +18,42 @@ class _LoginPageState extends State<LoginPage> {
   final passwordTextController = TextEditingController();
 
   void signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailTextController.text, password: passwordTextController.text);
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation(Colors.white),
+        ),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailTextController.text,
+        password: passwordTextController.text,
+      );
+
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // LOADING
+      Navigator.pop(context);
+      displayMesssage(e.code);
+    }
+  }
+
+  // ERROR MESSAGGIO
+  void displayMesssage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              icon: const Icon(Icons.error),
+              iconColor: Colors.grey[500],
+              title: const Text('Email non valida'),
+              titleTextStyle: TextStyle(
+                color: Colors.grey[500],
+                fontSize: 18,
+              ),
+            ));
   }
 
   @override

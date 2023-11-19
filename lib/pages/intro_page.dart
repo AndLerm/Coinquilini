@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IntroPage extends StatefulWidget {
-  const IntroPage({super.key});
+  final Function()? onTap;
+
+  const IntroPage({super.key, required this.onTap});
 
   @override
   State<IntroPage> createState() => _IntroPageState();
@@ -67,9 +69,7 @@ class _IntroPageState extends State<IntroPage> {
 
               ButtonLogin(
                 text: "Accedi",
-                onTap: () {
-                  Navigator.pushNamed(context, '/login_or_register');
-                },
+                onTap: widget.onTap,
               ),
 
               ButtonRegister(
