@@ -1,5 +1,8 @@
-import 'package:coinquilini/components/buttonLogin.dart';
-import 'package:coinquilini/components/buttonRegister.dart';
+import 'dart:io';
+
+import 'package:coinquilini/components/button_login.dart';
+import 'package:coinquilini/components/button_register.dart';
+import 'package:coinquilini/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -64,7 +67,11 @@ class IntroPage extends StatelessWidget {
                 },
               ),
 
-              ButtonRegister(text: "Iscriviti"),
+              ButtonRegister(
+                text: "Iscriviti",
+                onTap: () {},
+                onPressed: () {},
+              ),
             ],
           )),
     );

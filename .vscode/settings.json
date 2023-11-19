@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/Users/paler/wa/coinquilini/windows"
+    "cmake.sourceDirectory": "C:/Users/paler/wa/coinquilini/windows",
+    "cmake.configureOnOpen": false
 }

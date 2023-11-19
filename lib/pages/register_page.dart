@@ -3,18 +3,18 @@ import 'package:coinquilini/components/button.dart';
 import 'package:coinquilini/components/text_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-
-  const LoginPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: 200,
                 ),
                 Text(
-                  "Bentornato, inserisci la tua email e la tua password per accedere",
+                  "Eccoti! Crea il tuo profilo e gestisci la tua casa con i tuoi inquilini.",
                   style: TextStyle(color: Colors.grey[700]),
                   textAlign: TextAlign.center,
                 ),
@@ -48,19 +48,29 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 10,
                 ),
+
                 // RICHIESTA PASSWORD
                 MyTextField(
                   controller: passwordTextController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
 
-                // BOTTONE SIGN IN
+                MyTextField(
+                  controller: confirmPasswordTextController,
+                  hintText: 'Conferma password',
+                  obscureText: true,
+                ),
+
+                // BOTTONE SIGN UP
                 const SizedBox(height: 20),
 
                 Mybutton(
                   onTap: widget.onTap,
-                  text: "Accedi",
+                  text: "Registrati",
                 ),
 
                 const SizedBox(
@@ -71,16 +81,16 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Non sei un membro?",
+                      "Hai già un account?",
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(
-                      width: 3,
+                      width: 5,
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        "Registrati ora",
+                        "Allora accedi!",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.greenAccent,

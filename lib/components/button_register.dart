@@ -5,6 +5,8 @@ class ButtonRegister extends StatelessWidget {
   const ButtonRegister({
     super.key,
     required this.text,
+    required Null Function() onPressed,
+    required Null Function() onTap,
   });
 
   @override

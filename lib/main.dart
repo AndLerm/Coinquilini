@@ -1,6 +1,7 @@
+import 'package:coinquilini/auth/login_or_register.dart';
+import 'package:coinquilini/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/intro_page.dart';
-import 'pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,11 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IntroPage(),
-      routes: {
-        '/intropage': (context) => IntroPage(),
-        '/loginpage': (context) => LoginPage(),
-      },
+      home: LoginOrRegister(),
+      routes: {},
     );
   }
 }
