@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:coinquilini/components/button.dart';
 import 'package:coinquilini/components/text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +16,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+
+  void signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailTextController.text, password: passwordTextController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 20),
 
                 Mybutton(
-                  onTap: widget.onTap,
+                  onTap: signIn,
                   text: "Accedi",
                 ),
 

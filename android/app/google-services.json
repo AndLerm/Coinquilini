@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364838033404",
+    "project_id": "coinquilini-a635c",
+    "storage_bucket": "coinquilini-a635c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364838033404:android:34f550354536487076c479",
+        "android_client_info": {
+          "package_name": "com.example.coinquilini"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUnE7BrxwHtgAMBz0szxFkGuZPYw1V4QY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
