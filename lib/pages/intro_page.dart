@@ -6,9 +6,14 @@ import 'package:coinquilini/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class IntroPage extends StatelessWidget {
+class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
 
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +68,7 @@ class IntroPage extends StatelessWidget {
               ButtonLogin(
                 text: "Accedi",
                 onTap: () {
-                  Navigator.pushNamed(context, '/loginpage');
+                  Navigator.pushNamed(context, '/login_or_register');
                 },
               ),
 

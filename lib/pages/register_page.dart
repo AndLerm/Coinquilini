@@ -90,7 +90,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        "Allora accedi!",
+                        "Accedi!",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.greenAccent,
