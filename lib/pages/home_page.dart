@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Coinquilinsssasi"),
+        title: Text("C O I N Q U I ┘ I N I"),
         backgroundColor: Colors.green,
         actions: [
           IconButton(

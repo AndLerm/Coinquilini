@@ -1,3 +1,4 @@
+import 'package:coinquilini/components/text_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,20 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(color: Colors.grey[700]),
           ),
 
+          const SizedBox(height: 50),
           // DETTAGLI USER
+          Padding(
+            padding: const EdgeInsets.only(left: 25.0),
+            child: Text(
+              'Dettagli',
+              style: TextStyle(color: Colors.grey[600]),
+            ),
+          ),
+
+          MyTextBox(
+            text: 'okusersssssss',
+            sectionName: 'username',
+          ),
         ],
       ),
     );
