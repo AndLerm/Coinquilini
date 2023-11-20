@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coinquilini/components/button.dart';
 import 'package:coinquilini/components/text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,9 +37,19 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailTextController.text,
-          password: passwordTextController.text);
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailTextController.text,
+              password: passwordTextController.text);
+
+      // Crea user su FIREBASESTORE
+      FirebaseFirestore.instance
+          .collection("Users")
+          .doc(userCredential.user!.email)
+          .set({
+        'Username': emailTextController.text.split('@')[0],
+        'Bio': 'Scrivi una biografia...'
+      });
 
       if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
