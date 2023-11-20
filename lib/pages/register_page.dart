@@ -28,20 +28,10 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
 
+    // PASSWORD MATCH
     if (passwordTextController.text != confirmPasswordTextController.text) {
       Navigator.pop(context);
-
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                icon: const Icon(Icons.error),
-                iconColor: Colors.grey[500],
-                title: const Text('Email non valida'),
-                titleTextStyle: TextStyle(
-                  color: Colors.grey[500],
-                  fontSize: 18,
-                ),
-              ));
+      displayMesssage("Le password non corrispondono");
       return;
     }
 
@@ -49,9 +39,26 @@ class _RegisterPageState extends State<RegisterPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailTextController.text,
           password: passwordTextController.text);
+
+      if (context.mounted) Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
+      displayMesssage(e.code);
     }
+  }
+
+  void displayMesssage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              icon: const Icon(Icons.error),
+              iconColor: Colors.grey[500],
+              title: const Text('Message'),
+              titleTextStyle: TextStyle(
+                color: Colors.grey[500],
+                fontSize: 18,
+              ),
+            ));
   }
 
   @override
@@ -129,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        "Accedi!",
+                        "Allora accedi!",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.greenAccent,

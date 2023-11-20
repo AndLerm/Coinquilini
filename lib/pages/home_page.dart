@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void SignOut() {
+  void signOut() {
     FirebaseAuth.instance.signOut();
   }
 
@@ -21,7 +20,7 @@ class _HomePageState extends State<HomePage> {
         title: Text("Coinquilini"),
         actions: [
           IconButton(
-            onPressed: SignOut,
+            onPressed: signOut,
             icon: Icon(Icons.logout),
           )
         ],
