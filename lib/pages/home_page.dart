@@ -37,12 +37,6 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text("C O I N Q U I ┘ I N I"),
         backgroundColor: Colors.green,
-        actions: [
-          IconButton(
-            onPressed: signOut,
-            icon: Icon(Icons.logout),
-          )
-        ],
       ),
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,

@@ -12,11 +12,11 @@ class MyTextBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.green[400],
       ),
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 15,
         bottom: 15,
       ),
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         children: [
           Text(sectionName),
