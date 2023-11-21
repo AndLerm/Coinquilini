@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
           .collection("Users")
           .doc(userCredential.user!.email)
           .set({
-        'Username': emailTextController.text.split('@'),
+        'Username': emailTextController.text.split('@')[0],
         'Bio': 'Scrivi una biografia...'
       });
 

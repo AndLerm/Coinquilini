@@ -19,15 +19,20 @@ class MyDrawer extends StatelessWidget {
           Column(
             children: [
               const DrawerHeader(
-                  child: Icon(
-                Icons.person,
-                color: Colors.white,
-                size: 60,
+                  child: CircleAvatar(
+                backgroundColor: Colors.greenAccent,
+                child: Text(''),
               )),
 
-              Text(
-                (currentUser.email!),
-                style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 30),
+                child: Text(
+                  (currentUser.email!.split('@')[0]),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
 
               // home
