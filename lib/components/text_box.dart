@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class MyTextBox extends StatelessWidget {
   final String text;
   final String sectionName;
-
-  const MyTextBox({super.key, required this.text, required this.sectionName});
+  final void Function()? onPressed;
+  const MyTextBox({
+    super.key,
+    required this.text,
+    required this.sectionName,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +20,25 @@ class MyTextBox extends StatelessWidget {
       padding: const EdgeInsets.only(
         left: 15,
         bottom: 15,
+        top: 15,
       ),
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(sectionName),
-          Text(text),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(sectionName),
+              Text(text),
+              IconButton(
+                  onPressed: onPressed,
+                  icon: Icon(
+                    Icons.settings,
+                    color: Colors.grey[800],
+                  ))
+            ],
+          )
         ],
       ),
     );
