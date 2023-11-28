@@ -4,6 +4,7 @@ import 'package:coinquilini/components/button.dart';
 import 'package:coinquilini/components/text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -83,13 +84,29 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  "C O I N Q U I ┘ I N I",
+                  style: GoogleFonts.zenDots(
+                      color: Colors.grey[200],
+                      fontSize: 25,
+                      fontWeight: FontWeight.w800,
+                      wordSpacing: 8),
+                  textAlign: TextAlign.center,
+                ),
                 const Image(
                   image: AssetImage('lib/images/C1.png'),
                   width: 200,
                 ),
                 Text(
+                  "Eccoti!",
+                  style: GoogleFonts.zenDots(
+                      color: Colors.grey[200], fontSize: 15),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
                   "Eccoti! Crea il tuo profilo e gestisci la tua casa con i tuoi inquilini.",
-                  style: TextStyle(color: Colors.grey[700]),
+                  style: GoogleFonts.zenDots(
+                      color: Colors.grey[200], fontSize: 15),
                   textAlign: TextAlign.center,
                 ),
 

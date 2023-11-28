@@ -19,10 +19,12 @@ class MyDrawer extends StatelessWidget {
           Column(
             children: [
               const DrawerHeader(
-                  child: CircleAvatar(
-                backgroundColor: Colors.greenAccent,
-                child: Text(''),
-              )),
+                child: CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(
+                      'https://blendme.in/static/img/no_image.png'),
+                ),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),

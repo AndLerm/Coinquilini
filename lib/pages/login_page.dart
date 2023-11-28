@@ -3,6 +3,7 @@ import 'package:coinquilini/components/button.dart';
 import 'package:coinquilini/components/text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -67,13 +68,30 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  "C O I N Q U I ┘ I N I",
+                  style: GoogleFonts.zenDots(
+                      color: Colors.grey[200],
+                      fontSize: 25,
+                      fontWeight: FontWeight.w800,
+                      wordSpacing: 8),
+                  textAlign: TextAlign.center,
+                ),
+
                 const Image(
                   image: AssetImage('lib/images/C1.png'),
                   width: 200,
                 ),
                 Text(
-                  "Bentornato, inserisci la tua email e la tua password per accedere",
-                  style: TextStyle(color: Colors.grey[700]),
+                  "Rieccoti!",
+                  style: GoogleFonts.zenDots(
+                      color: Colors.grey[200], fontSize: 15),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "Inserisci la tua email e la tua password per accedere.",
+                  style: GoogleFonts.zenDots(
+                      color: Colors.grey[200], fontSize: 15),
                   textAlign: TextAlign.center,
                 ),
 

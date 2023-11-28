@@ -1,9 +1,12 @@
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coinquilini/components/text_box.dart';
+import 'package:coinquilini/components/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,9 +16,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  Uint8List? _image;
   final currentUser = FirebaseAuth.instance.currentUser!;
 
   final usersCollection = FirebaseFirestore.instance.collection("Users");
+
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() => {_image = img});
+  }
 
   // modifica campo
   Future<void> editField(String field) async {
@@ -80,6 +89,26 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(
                       height: 50,
                       // IMG USER
+                    ),
+
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        _image != null
+                            ? CircleAvatar(
+                                radius: 55,
+                                backgroundImage: MemoryImage(_image!),
+                              )
+                            : CircleAvatar(
+                                radius: 55,
+                                backgroundImage: NetworkImage(
+                                    'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png'),
+                              ),
+                        Positioned(
+                            child: IconButton(
+                                onPressed: selectImage,
+                                icon: Icon(Icons.add_a_photo)))
+                      ],
                     ),
                     // EMAIL USER
                     Text(
