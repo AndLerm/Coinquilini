@@ -25,7 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
       builder: (context) => const Center(
         child: CircularProgressIndicator(
           strokeWidth: 2,
-          valueColor: AlwaysStoppedAnimation(Colors.white),
+          valueColor: AlwaysStoppedAnimation(Colors.green),
         ),
       ),
     );

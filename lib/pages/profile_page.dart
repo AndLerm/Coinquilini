@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coinquilini/components/add_data.dart';
 import 'package:coinquilini/components/text_box.dart';
 import 'package:coinquilini/components/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +23,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void selectImage() async {
     Uint8List img = await pickImage(ImageSource.gallery);
-    setState(() => {_image = img});
+    setState(() => _image = img);
+  }
+
+  void saveProfile() async {
+    String resp = await StoreData().saveData(file: _image!);
   }
 
   // modifica campo
@@ -38,7 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
         content: TextField(
           autofocus: true,
-          style: TextStyle(color: Colors.green),
+          style: const TextStyle(color: Colors.green),
           decoration: InputDecoration(
               hintText: "Modifica $field",
               hintStyle: TextStyle(color: Colors.grey[400])),
@@ -55,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
               )),
           TextButton(
               onPressed: () => Navigator.of(context).pop(newValue),
-              child: Text(
+              child: const Text(
                 'Modifica',
                 style: TextStyle(color: Colors.green),
               )),
@@ -63,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
 
-    if (newValue.trim().length > 0) {
+    if (newValue.trim().isNotEmpty) {
       await usersCollection.doc(currentUser.email).update({field: newValue});
     }
   }
@@ -72,7 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Pagina profilo"),
+          title: const Text("Profilo"),
           backgroundColor: Colors.green,
         ),
         body: StreamBuilder<DocumentSnapshot>(
@@ -99,18 +103,35 @@ class _ProfilePageState extends State<ProfilePage> {
                                 radius: 55,
                                 backgroundImage: MemoryImage(_image!),
                               )
-                            : CircleAvatar(
+                            : const CircleAvatar(
                                 radius: 55,
-                                backgroundImage: NetworkImage(
-                                    'https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png'),
+                                backgroundColor: Colors.white30,
+                                backgroundImage: AssetImage(
+                                  'lib/images/C1.png',
+                                ),
                               ),
                         Positioned(
                             child: IconButton(
-                                onPressed: selectImage,
-                                icon: Icon(Icons.add_a_photo)))
+                          onPressed: selectImage,
+                          icon: const Icon(Icons.add_a_photo),
+                          padding: const EdgeInsets.only(top: 80, left: 100),
+                        ))
                       ],
                     ),
+
                     // EMAIL USER
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10, top: 15),
+                      child: Text(
+                        (currentUser.email!.split('@')[0]),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.green,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+
                     Text(
                       currentUser.email!,
                       textAlign: TextAlign.center,
@@ -129,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     MyTextBox(
                       text: userData["Username"],
-                      sectionName: 'Username',
+                      sectionName: '',
                       onPressed: () => editField('Username'),
                     ),
 
@@ -144,9 +165,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     MyTextBox(
                       text: userData["Bio"],
-                      sectionName: 'Bio',
+                      sectionName: '',
                       onPressed: () => editField('Bio'),
                     ),
+
+                    ElevatedButton(
+                      onPressed: saveProfile,
+                      child: const Text('Save'),
+                    )
                   ],
                 );
               } else if (snapshot.hasError) {
